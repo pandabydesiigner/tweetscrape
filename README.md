@@ -11,12 +11,6 @@ eg: `python textscrape.py lilbthebasedgod`
 
 ## Dependencies
 
-Use [pip](https://pypi.python.org/pypi/pip) to install/upgrade the necessary dependencies:
-
-*   twitter
-*   io
-*   json
-*   sys
-*   urllib2
-*   httplib
-*   time
+```bash
+pip install -r requirements.txt
+```
