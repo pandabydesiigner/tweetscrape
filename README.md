@@ -4,7 +4,18 @@ Scrapes a twitter users most recent 3200 tweets and saves to a `.json` file in `
 
 ## Usage
 
-Add your [twitter api](https://apps.twitter.com/) credentials to oauth.py
+Add your [twitter api](https://apps.twitter.com/) credentials to `config.json` in project root
+
+eg:
+
+```js
+{
+  "consumer_key": "XXX",
+  "consumer_secret": "XXX",
+  "access_token_key": "XXX",
+  "access_token_secret": "XXX"
+}
+```
 
 #### tweetscrape
 
@@ -23,6 +34,16 @@ to download all media images from a user
 `python mediascrape.py -u [user]`
 
 eg: `python mediascrape.py -u lilbthebasedgod`
+
+this will save all files to a directory of `/media/[user]/*`
+
+#### multi\_mediascrape
+
+to download all media images from a list of users, make a line-seperated `.txt` list of users and pass it to `multi_mediascrape` with `-f` 
+
+`python multi_mediascrape.py -f [txt file of names]`
+
+eg: `python multi_mediascrape.py -f /home/me/tweetscrape/models/names.txt`
 
 this will save all files to a directory of `/media/[user]/*`
 

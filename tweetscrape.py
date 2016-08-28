@@ -63,8 +63,8 @@ def harvest_user_timeline(twitter_api, screen_name=None, user_id=None, max_resul
 
     return results[:max_results]
 
-def tweetscrape(user):
-    twitter_api = oauth_login()
+def tweetscrape(user, randomize=False):
+    twitter_api = oauth_login(randomize)
     tweets = harvest_user_timeline(twitter_api, screen_name=user, max_results=3200)
     return tweets
 
@@ -75,5 +75,5 @@ if __name__ == '__main__':
     args = vars(ap.parse_args())
     user = args['user']
 
-    tweets = tweetscrape(user)
+    tweets = tweetscrape(user, False)
     save_json(user, tweets)
