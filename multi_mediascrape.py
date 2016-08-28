@@ -28,5 +28,7 @@ for name in name_list:
     if not os.path.exists(dump_dir):
         os.makedirs(dump_dir)
 
-    statuses = tweetscrape(name, randomize=(args['single'] is None))
+    make_random = args['single'] is None
+
+    statuses = tweetscrape(name, randomize = make_random)
     mediascrape(name, statuses, dump_dir, limit)
