@@ -22,7 +22,7 @@ to download all media images from a user
 
 `python mediascrape.py -u [user]`
 
-eg: `python mediacrape.py -u lilbthebasedgod`
+eg: `python mediascrape.py -u lilbthebasedgod`
 
 this will save all files to a directory of `/media/[user]/*`
 
