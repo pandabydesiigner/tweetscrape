@@ -22,16 +22,25 @@ def mediascrape(user, statuses, dump_dir, limit=None):
         screen_name = status.get('user', {}).get('screen_name')
         status_id = status.get('id_str')
 
+        used_urls = []
+
         for media in status_media:
+            media_url = media.get('media_url')
+            media_type = media.get('type')
+
             # only get photos
-            if media.get('type') != 'photo':
+            if media_type != 'photo':
                 break
             # dont get thumbnails
-            if 'thumb' in media.get('media_url'):
+            if 'thumb' in media_url:
+                break
+            # dont repeat urls
+            if media_url in used_urls:
                 break
 
+            used_urls.append(media_url)
             all_media.append({
-                    'media_url': media.get('media_url'),
+                    'media_url': media_url,
                     'file_name': '{0}_{1}.jpg'.format(screen_name, status_id)
                     })
 
