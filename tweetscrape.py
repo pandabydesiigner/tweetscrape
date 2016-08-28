@@ -2,8 +2,7 @@ import sys
 from oauth import oauth_login
 from request import make_twitter_request
 from json_tools import save_json
-
-user = sys.argv[1]
+import argparse
 
 def harvest_user_timeline(twitter_api, screen_name=None, user_id=None, max_results=3200):
 
@@ -12,7 +11,6 @@ def harvest_user_timeline(twitter_api, screen_name=None, user_id=None, max_resul
 
     kw = {  # Keyword args for the Twitter API call
         'count': 200,
-        'trim_user': 'true',
         'include_rts' : 'true',
         'since_id' : 1
         }
@@ -39,7 +37,7 @@ def harvest_user_timeline(twitter_api, screen_name=None, user_id=None, max_resul
     # save requests. e.g. Don't make a third request if you have 287 tweets out of
     # a possible 400 tweets after your second request. Twitter does do some
     # post-filtering on censored and deleted tweets out of batches of 'count', though,
-    # so you can't strictly check for the number of results being 200. You might get
+    # so you can,w't strictly check for the number of results being 200. You might get
     # back 198, for example, and still have many more tweets to go. If you have the
     # total number of tweets for an account (by GET /users/lookup/), then you could
     # simply use this value as a guide.
@@ -65,7 +63,17 @@ def harvest_user_timeline(twitter_api, screen_name=None, user_id=None, max_resul
 
     return results[:max_results]
 
-twitter_api = oauth_login()
-tweets = harvest_user_timeline(twitter_api, screen_name=user, max_results=3200)
+def tweetscrape(user):
+    twitter_api = oauth_login()
+    tweets = harvest_user_timeline(twitter_api, screen_name=user, max_results=3200)
+    return tweets
 
-save_json(user, tweets)
+if __name__ == '__main__':
+    # parse cli arguments
+    ap = argparse.ArgumentParser()
+    ap.add_argument('-u', '--user', help = 'user to scrape (screen name or id)')
+    args = vars(ap.parse_args())
+    user = args['user']
+
+    tweets = tweetscrape(user)
+    save_json(user, tweets)
