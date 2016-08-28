@@ -27,7 +27,7 @@ def mediascrape(user, statuses, dump_dir, limit=None):
             if media.get('type') != 'photo':
                 break
             # dont get thumbnails
-            if 'thumb' in media.get('media_url')
+            if 'thumb' in media.get('media_url'):
                 break
 
             all_media.append({

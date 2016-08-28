@@ -14,6 +14,7 @@ dump_path = path + '/media'
 ap = argparse.ArgumentParser()
 ap.add_argument('-f', '--file', help = 'file of names to grab')
 ap.add_argument('-l', '--limit', type = int, help = 'file to analyze')
+ap.add_argument('-s', '--single', help = 'dont use multiple accounts', action="store_true")
 args = vars(ap.parse_args())
 filename = args['file']
 limit = args['limit']
@@ -26,5 +27,6 @@ for name in name_list:
     dump_dir = '{0}/{1}'.format(dump_path, name)
     if not os.path.exists(dump_dir):
         os.makedirs(dump_dir)
-    statuses = tweetscrape(name, randomize=True)
+
+    statuses = tweetscrape(name, randomize=(args['single'] is None))
     mediascrape(name, statuses, dump_dir, limit)
