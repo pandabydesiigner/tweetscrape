@@ -23,9 +23,9 @@ eg:
 
 to download up to 3200 recent tweets from user: 
 
-`python textscrape.py -u [user]`
+`python tweetscrape.py -u [user]`
 
-eg: `python textscrape.py -u lilbthebasedgod`
+eg: `python tweetscrape.py -u lilbthebasedgod`
 
 this will save a `.json` file of tweets to `/data/[user].json`
 

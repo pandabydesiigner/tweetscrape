@@ -58,7 +58,7 @@ def mediascrape(user, statuses, dump_dir, limit=None):
     for idx, media in enumerate(all_media):
         url = media.get('media_url')
         filename = media.get('file_name')
-        print('fetching image {0} - {1}'.format(idx, url))
+        print('fetching image {0} - {1}'.format(idx + 1, url))
         urllib.urlretrieve(url, '{0}/{1}'.format(dump_dir, filename))
 
 if __name__ == '__main__':
