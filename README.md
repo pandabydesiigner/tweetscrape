@@ -1,7 +1,7 @@
 # tweetscrape
 
 <p align="center">
-  <img width="400px" src="cover.png" />
+  <img width="80%" src="cover.png" />
 </p>
 
 ## Usage
