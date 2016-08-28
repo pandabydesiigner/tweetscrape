@@ -41,6 +41,8 @@ this will save all files to a directory of `/media/[user]/*`
 
 _note: to use multi media scraper youll need multiple accounts as youll probably rate limit otherwise_
 
+**if you dont have multiple accounts pass -s to just use single account**
+
 create an `accounts.json` in project root with the following structure:
 
 ```js
@@ -59,8 +61,6 @@ create an `accounts.json` in project root with the following structure:
   }
 ]
 ```
-
-**if you dont have multiple accounts pass -s to just use single account**
 
 to download all media images from a list of users, make a line-seperated `.txt` list of users and pass it to `multi_mediascrape` with `-f` 
 
