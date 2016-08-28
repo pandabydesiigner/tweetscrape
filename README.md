@@ -1,6 +1,8 @@
 # tweetscrape
 
-Scrapes a twitter users most recent 3200 tweets and saves to a `.json` file in `data/`. 
+<p align="center">
+  <img width="400px" src="cover.png" />
+</p>
 
 ## Usage
 
