@@ -29,13 +29,13 @@ def mediascrape(user, statuses, dump_dir, limit=None):
             media_type = media.get('type')
 
             # only get photos
-            if media_type != 'photo':
-                break
+            is_photo = media_type == 'photo'
             # dont get thumbnails
-            if 'thumb' in media_url:
-                break
+            is_thumb == 'thumb' in media_url
             # dont repeat urls
-            if media_url in used_urls:
+            existing = media_url in used_urls:
+
+            if not is_photo or is_thumb or is existing:
                 break
 
             used_urls.append(media_url)

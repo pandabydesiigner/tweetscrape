@@ -20,14 +20,47 @@ def find_dupes(path):
 
     for (i,entry) in enumerate(hash_list):
         for j in range(i+1,N):
-            #print i,j
-            if hash_list[i] == hash_list[j]:
-                print('FOUND MATCH >>> ')
+            hash_match = hash_list[i] == hash_list[j]
+            filename_i = file_list[i].split('/')[-1]
+            filename_j = file_list[j].split('/')[-1]
+            is_not_rt = filename_i != filename_j
+
+            if hash_match and is_not_rt:
+
+                def extract_user(filename):
+                    #break bits up
+                    chunks = filename.split('/')
+                    # get last one (actual filename)
+                    fn = chunks[-1]
+                    # since usernames can contain _
+                    # chop off the last split of a _
+                    last_bit = fn.split('_')[-1]
+                    user = fn.replace('_' + last_bit, '')
+                    # all thats left is the user
+                    return user
+
+                def extract_id_str(filename):
+                    return filename.split('/')[-1].replace('.jpg', '').split('_')[-1]
+
+                user_i = extract_user(file_list[i])
+                id_str_i = extract_id_str(file_list[i])
+                user_j = extract_user(file_list[j])
+                id_str_j = extract_id_str(file_list[j])
+                cross_post = 'CROSS POST ' if user_i != user_j else ''
+
+                print('FOUND ' + cross_post + 'MATCH >>>')
+                print('')
+                print('#1 ------------- ')
                 print(file_list[i])
+                print('https://twitter.com/{0}/status/{1}'.format(user_i, id_str_i))
+                print('')
+                print('#2 ------------- ')
                 print(file_list[j])
+                print('https://twitter.com/{0}/status/{1}'.format(user_j, id_str_j))
                 print('')
                 print('~~~~~~~~~~~~~~~~~')
                 print('')
+
                 dupes.append(file_list[j])
 
     return dupes

@@ -72,6 +72,13 @@ eg: `python multi_mediascrape.py -f /home/me/tweetscrape/models/names.txt`
 
 this will save all files to a directory of `/media/[user]/*`
 
+## memefinder
+
+experimental script to find the same images posted in different tweets, possibly
+suggesting the image is of meme interest
+
+`python memefinder.py -d [optional directory defaults to /media]`
+
 ## Dependencies
 
 ```bash
