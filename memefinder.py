@@ -7,7 +7,7 @@ import argparse
 hash_list = []
 file_list = []
 
-def find_dupes(path):
+def find_dupes(path, cross):
     for dirname, dirnames, filenames in os.walk(path):
         for filename in filenames:
             file_path = os.path.join(dirname, filename)
@@ -48,6 +48,12 @@ def find_dupes(path):
                 id_str_j = extract_id_str(file_list[j])
                 cross_post = 'CROSS POST ' if user_i != user_j else ''
 
+                dupes.append(file_list[j])
+
+                # if cross post only mode and no cross, break
+                if cross and cross_post == '':
+                    break
+
                 print('FOUND ' + cross_post + 'MATCH >>>')
                 print('')
                 print('#1 ------------- ')
@@ -61,8 +67,6 @@ def find_dupes(path):
                 print('~~~~~~~~~~~~~~~~~')
                 print('')
 
-                dupes.append(file_list[j])
-
     return dupes
 
 if __name__ == '__main__':
@@ -72,9 +76,10 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('-d', '--directory', help = 'directory to parse', default=image_path)
     ap.add_argument('-e', '--erase', help = 'erase dupes', action="store_true")
+    ap.add_argument('-x', '--cross', help = 'only show cross post matches', action="store_true")
     args = vars(ap.parse_args())
 
-    dupes = find_dupes(args['directory'])
+    dupes = find_dupes(args['directory'], args['cross'])
 
     if args['erase']:
         for dupe in set(dupes):
