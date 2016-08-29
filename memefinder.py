@@ -75,12 +75,7 @@ if __name__ == '__main__':
 
     ap = argparse.ArgumentParser()
     ap.add_argument('-d', '--directory', help = 'directory to parse', default=image_path)
-    ap.add_argument('-e', '--erase', help = 'erase dupes', action="store_true")
     ap.add_argument('-x', '--cross', help = 'only show cross post matches', action="store_true")
     args = vars(ap.parse_args())
 
     dupes = find_dupes(args['directory'], args['cross'])
-
-    if args['erase']:
-        for dupe in set(dupes):
-            os.remove(dupe)
