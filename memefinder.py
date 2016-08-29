@@ -2,6 +2,7 @@
 
 import hashlib
 import os
+import argparse
 
 hash_list = []
 file_list = []
@@ -34,4 +35,14 @@ def find_dupes(path):
 if __name__ == '__main__':
     path = os.path.dirname(os.path.realpath(__file__))
     image_path = path + '/media'
-    dupes = find_dupes(image_path)
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument('-d', '--directory', help = 'directory to parse', default=image_path)
+    ap.add_argument('-e', '--erase', help = 'erase dupes', action="store_true")
+    args = vars(ap.parse_args())
+
+    dupes = find_dupes(args['directory'])
+
+    if args['erase']:
+        for dupe in dupes:
+            os.remove(dupe)

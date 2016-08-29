@@ -56,11 +56,10 @@ def mediascrape(user, statuses, dump_dir, limit=None):
             retweeted_media = retweeted.get('entities', {}).get('media')
             if tweeter != retweeter and retweeted_media:
                 add_media(retweeted)
-
-
-        status_media = status.get('entities', {}).get('media')
-        if status_media:
-            add_media(status)
+        else:
+            status_media = status.get('entities', {}).get('media')
+            if status_media:
+                add_media(status)
 
 
     print('found {0} total images'.format(len(all_media)))
