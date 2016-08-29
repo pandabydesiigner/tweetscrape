@@ -30,7 +30,7 @@ def harvest_user_timeline(twitter_api, screen_name=None, user_id=None, max_resul
 
     results += tweets
 
-    print >> sys.stderr, 'Fetched %i tweets' % len(tweets)
+    print('Fetched {0} tweets.',format(len(tweets)))
 
     page_num = 1
 
@@ -55,11 +55,11 @@ def harvest_user_timeline(twitter_api, screen_name=None, user_id=None, max_resul
         tweets = make_twitter_request(twitter_api.statuses.user_timeline, **kw)
         results += tweets
 
-        print >> sys.stderr, 'Fetched %i tweets' % (len(tweets),)
+        print('Fetched {0} tweets.',format(len(tweets)))
 
         page_num += 1
 
-    print >> sys.stderr, 'Done fetching tweets'
+    print('Done fetching tweets. Found {0} in total.'.format(len(results[:max_results])))
 
     return results[:max_results]
 
