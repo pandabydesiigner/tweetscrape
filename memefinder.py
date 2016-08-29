@@ -44,5 +44,5 @@ if __name__ == '__main__':
     dupes = find_dupes(args['directory'])
 
     if args['erase']:
-        for dupe in dupes:
+        for dupe in set(dupes):
             os.remove(dupe)
