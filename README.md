@@ -77,7 +77,7 @@ this will save all files to a directory of `/media/[user]/*`
 experimental script to find the same images posted in different tweets, possibly
 suggesting the image is of meme interest
 
-`python memefinder.py -d [optional directory defaults to /media]`
+`python memefinder.py -d [optional directory defaults to /media] -e [flag to erase dupes]`
 
 ## Dependencies
 
